@@ -7,6 +7,7 @@ const gulpIf = require('gulp-if');
 const cssnano = require('gulp-cssnano');
 const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
+const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const runSequence = require('run-sequence');
 
@@ -14,6 +15,11 @@ const runSequence = require('run-sequence');
 gulp.task('sass', function () {
     return gulp.src('app/stylesheets/sass/styles.scss')
         .pipe(sass())
+        .pipe(autoprefixer({
+            browsers: ['last 2 version'],
+            grid: true
+            }
+         ))
         .pipe(gulp.dest('app/stylesheets/'))
         .pipe(browserSync.reload({
             stream: true
@@ -25,13 +31,13 @@ gulp.task('watch', ['browserSync', 'sass'], function () {
     //watch for SASS files changes and compile
     gulp.watch('app/stylesheets/sass/**/*.scss', ['sass']);
     //watch for HTML changes and reload browser
-    gulp.watch('app/*.html', browserSync.reload);    
+    gulp.watch('app/*.html', browserSync.reload);
     //watch for JS changes and reload browser
     gulp.watch('app/js/*.js',browserSync.reload);
 })
 
 //run Browsersync for automatic reload on changes
-gulp.task('browserSync', function () {  
+gulp.task('browserSync', function () {
     browserSync.init({
         server: {
             baseDir: 'app'
@@ -77,14 +83,14 @@ gulp.task('cache:clear', function (callback) {
 // Build for production minimizes js and css and images
 gulp.task('build', function (callback) {
     runSequence('clean:dist',
-        ['sass', 'useref', 'images', 'fonts'],
+        ['useref', 'images', 'fonts'],
         callback
     )
 })
 
 //default task for development
 gulp.task('default', function (callback) {
-    runSequence(['sass', 'browserSync', 'watch'],
+    runSequence(['sass','browserSync', 'watch'],
         callback
     )
 })

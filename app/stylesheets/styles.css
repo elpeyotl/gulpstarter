@@ -1,0 +1,16 @@
+/****
+Reset Browser styles
+*****/
+html, body {
+  margin: 0; }
+
+/****
+Typography
+****/
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.4rem; }
+
+/* =14px */
