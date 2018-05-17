@@ -1,0 +1,27 @@
+
+/****************
+ALL TYPOGRAPHY RELEATED STUFF COMES HERE
+
+We set the main font-size to 62.5%
+so 16px would be 1.6 rem! Use Rems!
+******************/
+
+html {
+  font-size: 62.5%;
+  transition: font-size 0.5s ease-in;
+}
+
+body {
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 50%;
+  }
+}
+

@@ -1,6 +1,21 @@
-/****
-Reset Browser styles
-*****/
-html, body {
-    margin: 0;
+/***********
+LAYOUT STUFF GOES HERE
+**************/
+
+body {
+  overflow-x: hidden;
 }
+
+html {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.main-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width:$max-page-width;
+  min-height: 100vh;
+}
+

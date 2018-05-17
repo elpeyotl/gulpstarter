@@ -1,3 +1,13 @@
-// Import all your SCSS files here
+/*********
+MAIN CSS FILE
+Point your website/app to this file
+It loads all necessary other files
+*************/
+@import 'reset';
+@import 'helpers';
+@import 'variables';
+@import 'gridlex/gridlex';
+@import 'variables';
+@import 'typography';
 @import 'layout';
-@import 'typo';
+
