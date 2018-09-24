@@ -1,0 +1,112 @@
+/************
+SET THE VARIABLES YOU USE IN YOUR PROJECT
+Like colors, page width, breakpoints etc.
+*************/
+
+//Colors
+.bg-primary {
+  background-color: lightblue;
+}
+.bg-secondary {
+  background-color:  lightcoral;
+}
+.bg-third {
+  background-color: lightcyan;
+}
+.bg-fourth {
+  background-color: lightgoldenrodyellow;
+}
+
+//Layout
+$max-page-width: 1060px;
+$max-page-outer-width: 1600px;
+
+//Breakpoints
+$breakpoint-small: 680px;
+$breakpoint-medium: 1020px;
+$breakpoint-large: 1440px;
+
+//Font Sizes
+$h1-size: 4rem;
+$h2-size: 2rem;
+$body-size: 1.4rem;
+$small-size: 1.2rem;
+
+//Gutter
+$gutter: 3rem;
+
+/*********
+*
+* Mixins we use
+*
+
+/*********
+Mixins
+**********/
+
+@mixin bp-small {
+  @media (min-width: #{$breakpoint-small}) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media (min-width: #{$breakpoint-medium}) {
+    @content;
+  }
+}
+
+@mixin bp-large {
+  @media (min-width: #{$breakpoint-large}) {
+    @content;
+  }
+}
+
+//targets IE11
+@mixin IE11 {
+  @media all and (-ms-high-contrast:none) {
+    @content;
+  }
+}
+
+.visible-xs {
+  display: block;
+  @include bp-small {
+    display: none;
+  }
+}
+
+/************
+EXTENSIONS!
+This classes will be included in the components
+with @extend .classname
+/*************
+
+/*********
+WRAPPERS
+**********/
+.inner-wrapper {
+  width: 100%;
+  height: auto;
+  max-width:$max-page-width;
+  position: relative;
+  margin: 0 auto;
+ // background-color: red;
+}
+.outer-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width:$max-page-outer-width;
+  position: relative;
+  margin: 0 auto;
+  //background-color: green;
+}
+
+/*********
+Transition effect
+**********/
+
+.trans {
+  transition: all 0.5s ease;
+}
+
