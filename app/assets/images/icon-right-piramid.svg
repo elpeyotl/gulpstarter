@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="15px" viewBox="0 0 9 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3 Copy 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 9 0 9 15 0 15"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile_Navigation_All" transform="translate(-323.000000, -374.000000)">
+            <g id="Group-19" transform="translate(42.000000, 181.000000)">
+                <g id="Group-3-Copy-4" transform="translate(281.000000, 193.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M0.927251732,0.150381565 C1.03002309,0.0505012719 1.14896074,0 1.28290993,0 C1.41685912,0 1.53579677,0.0505012719 1.63856813,0.150381565 L8.84526559,7.15434685 C8.94919169,7.25534939 9,7.37094119 9,7.5 C9,7.63130331 8.94919169,7.74577286 8.84526559,7.84565315 L1.63856813,14.8507407 C1.53579677,14.950621 1.41685912,15 1.28290993,15 C1.14896074,15 1.03002309,14.950621 0.927251732,14.8507407 L0.154734411,14.0988329 C0.0508083141,13.9989526 0,13.8833608 0,13.7531797 C0,13.6229987 0.0508083141,13.5074069 0.154734411,13.4075266 L6.23210162,7.5 L0.154734411,1.59359569 C0.0508083141,1.4937154 0,1.3781236 0,1.24794254 C0,1.11776148 0.0508083141,1.00216968 0.154734411,0.902289391 L0.927251732,0.150381565 Z" id="Fill-1" fill="#00A5D3" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

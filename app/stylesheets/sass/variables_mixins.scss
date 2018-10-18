@@ -3,12 +3,25 @@ SET THE VARIABLES YOU USE IN YOUR PROJECT
 Like colors, page width, breakpoints etc.
 *************/
 
+//colors
+$color-white: #ffffff;
+$color-light-grey: #f4f4f2;
+$color-grey: #9b9b9b;
+$color-grey-medium: #4a4a4a;
+$color-green: #95c11f;
+$color-blue-dark: #0b2f4c;
+$color-blue-light: #00a5d3;
+
+.green {
+  color: $color-green;
+}
+
 //Colors
 .bg-primary {
   background-color: lightblue;
 }
 .bg-secondary {
-  background-color:  lightcoral;
+  background-color: lightcoral;
 }
 .bg-third {
   background-color: lightcyan;
@@ -19,12 +32,13 @@ Like colors, page width, breakpoints etc.
 
 //Layout
 $max-page-width: 1060px;
-$max-page-outer-width: 1600px;
+$max-page-outer-width: 1800px;
 
 //Breakpoints
-$breakpoint-small: 680px;
-$breakpoint-medium: 1020px;
-$breakpoint-large: 1440px;
+$breakpoint-small: 768px;
+$breakpoint-medium: 1110px;
+$breakpoint-large: 1261px;
+$breakpoint-xlarge: 1569px;
 
 //Font Sizes
 $h1-size: 4rem;
@@ -61,10 +75,15 @@ Mixins
     @content;
   }
 }
+@mixin bp-xlarge {
+  @media (min-width: #{$breakpoint-xlarge}) {
+    @content;
+  }
+}
 
 //targets IE11
 @mixin IE11 {
-  @media all and (-ms-high-contrast:none) {
+  @media all and (-ms-high-contrast: none) {
     @content;
   }
 }
@@ -88,15 +107,15 @@ WRAPPERS
 .inner-wrapper {
   width: 100%;
   height: auto;
-  max-width:$max-page-width;
+  max-width: $max-page-width;
   position: relative;
   margin: 0 auto;
- // background-color: red;
+  // background-color: red;
 }
 .outer-wrapper {
   width: 100%;
   height: 100%;
-  max-width:$max-page-outer-width;
+  max-width: $max-page-outer-width;
   position: relative;
   margin: 0 auto;
   //background-color: green;
@@ -109,4 +128,3 @@ Transition effect
 .trans {
   transition: all 0.5s ease;
 }
-

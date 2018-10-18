@@ -1,40 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/934920ea-6031-4425-8041-bd7b8440a257.css" />
     <!--build:css css/styles.min.css-->
     <link rel="stylesheet" href="stylesheets/styles.css">
     <!--endbuild-->
 </head>
+
 <body>
-    <div id="app">
-        <div class="login-page bg-secondary">
-                <div class="main-wrapper center-item bg-primary">
-                    <header class="bg-fourth">LOGO</header>
-                    <div class="grid_xs-1">
-                        <div class="col bg-primary">1</div>
-                        <div class="col bg-secondary">2</div>
-                        <div class="col bg-third">3</div>
-                    </div>
-                    <footer class="bg-third">Footer</footer>
+    <div id="app" :class="{'fixed': mobileMenuOpen}">
+        <div class="main-header__outer">
+
+            <transition name="fade">
+                <div class="header__gradient" v-show="scrolled"></div>
+            </transition>
+
+            <header class="main-header main-wrapper-outer center-item">
+                <img class="main-header__logo" src="assets/images/logo.svg" />
+                <!--Desktop menu-->
+                <!-- hidden on mobile-->
+                <nav class="main-header__nav">
+                    <ul>
+                        <li data-nav='1' class="main-header__nav-item main-header__nav--active " @mouseleave="hideNav($event)"
+                            @mouseover="showSubNav($event)">Versicherungen</li>
+                        <li data-nav='2' class="main-header__nav-item" @mouseleave="hideNav($event)" @mouseover="showSubNav($event)">Mehrwert</li>
+                        <li data-nav="null" class="main-header__nav-item" @mouseleave="hideNav($event)" @mouseover="showSubNav($event)"><a
+                                href="https://www.sanagate.ch" target="_blank">Kontakt
+                                & Support</a></li>
+                        <li data-nav='3' class="main-header__nav-item" @mouseleave="hideNav($event)" @mouseover="showSubNav($event)"
+                            data-nav='4'>Über
+                            uns</li>
+                    </ul>
+                </nav>
+
+                <div class="lang-switcher">
+                    <!-- <span class="lang-switcher__text">DE</span> -->
+                    <lang-switcher></lang-switcher>
                 </div>
+
+
+
+                <!--end desktop menu / hidden on mobile -->
+
+                <div class="login-button login-button__desktop">
+                    <span>mySanagate</span>
+                </div>
+
+                <!--mobile Menu-->
+                <div class="burger-menu">
+                    <img class="lang-switcher__icon--mobile" src="assets/images/icon-search.svg" />
+
+                    <img v-show="!mobileMenuOpen" class="burger-menu__icon" @click="mobileMenuOpen = true" src="assets/images/icon-burger.svg" />
+                    <img v-show="mobileMenuOpen" @click="mobileMenuOpen = false" class="burger-menu__icon--close" src="assets/images/icon-burger-close.svg" />
+                </div>
+                <transition name="fade">
+                    <div v-show="mobileMenuOpen" class="mobile-menu-wrapper">
+
+                        <div class="subnav-inner-item subnav-inner-item--mobile center-item">
+
+                            <div class="subnav-inner__header">
+                                <transition name="fade">
+                                    <div class="button__back" @click="mobileSubNavFirstPage" v-show="subPage">
+                                        <img src="assets/images/icon-arrow-left.svg" />
+                                        <span>Alle Themen</span>
+                                        <!-- lang switcher mobile -->
+                                    </div>
+                                </transition>
+                                <select class="lang-switcher__text--mobile lang-switcher__text">
+                                    <option value="de">DE</option>
+                                    <option value="end">EN</option>
+                                    <option value="fr">FR</option>
+                                </select>
+                            </div>
+
+                            <transition name="fadeInRight">
+                                <div class="sub-nav-mobile__wrapper" v-show="!subPage">
+                                    <ul class="sub-nav-inner__list">
+                                        <li class="sub-nav-inner__list-item sub-nav-inner__list-item--active" @click="showMobileSubNav('versicherungen')">Versicherungen</li>
+                                        <li class="sub-nav-inner__list-item" @click="showMobileSubNav('mehrwert')">Mehrwert</li>
+                                        <li class="sub-nav-inner__list-item" @click="showMobileSubNav('ueberuns')">Über
+                                            uns</li>
+                                        <li class="sub-nav-inner__list-item">Kontakt & Support</li>
+                                    </ul>
+                                    <ul class="sub-nav-inner__list">
+                                        <li class="sub-nav-inner__list-item list-item__calculator">Prämienrechner</li>
+                                    </ul>
+                                    <div class="login-button">
+                                        <span>mySanagate</span>
+                                    </div>
+                                </div>
+                            </transition>
+
+
+                            <transition name="fadeInRight">
+                                <div v-show="subNavElements.versicherungen">
+                                    <div class="sub-nav-mobile__wrapper">
+                                        <ul class="sub-nav-inner__list">
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__close">Grundversicherung</li>
+                                            <div class="sublist-mobile">
+                                                <ul>
+                                                    <li class="sublist__item">Übersicht</li>
+                                                    <li class="sublist__item">Standardmodel</li>
+                                                    <li class="sublist__item">Hausarztmodel</li>
+                                                    <li class="sublist__item sublist__item--active">SanaCall</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Zusatzversicherung</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Übersicht</li>
+                                                    <li class="sublist__item">Ambulantversicherung</li>
+                                                    <li class="sublist__item">Spitalversicherung</li>
+                                                    <li class="sublist__item">Alternativversicherung</li>
+                                                    <li class="sublist__item">Zahnpflegeversicherung</li>
+                                                    <li class="sublist__item">Zahnpflegeversicherung</li>
+                                                    <li class="sublist__item">Tod oder Invalidität durch Unfall</li>
+                                                    <li class="sublist__item">Tod oder Invalidität durch Krankheit</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Wechsel
+                                                zu
+                                                Sanagate</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Kündigungsfristen &
+                                                        Anleitung zum Wechsel</li>
+                                                    <li class="sublist__item">Neu in der Schweiz</li>
+                                                    <li class="sublist__item">Spitalversicherung</li>
+                                                    <li class="sublist__item">Vorgeburtliche Anmeldung</li>
+                                                </ul>
+                                            </div>
+
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Optimieren
+                                                und
+                                                Sparen</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Grundversicherung</li>
+                                                    <li class="sublist__item">Zusatzversicherung</li>
+                                                </ul>
+                                            </div>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </transition>
+
+                            <transition name="fadeInRight">
+                                <div v-show="subNavElements.mehrwert">
+                                    <div class="sub-nav-mobile__wrapper">
+                                        <ul class="sub-nav-inner__list">
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">SanaTools</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">my Sanagate</li>
+                                                    <li class="sublist__item">SanaHealth</li>
+                                                    <li class="sublist__item">PocketDoc</li>
+                                                    <li class="sublist__item">Panda</li>
+                                                    <li class="sublist__item">Medgate App</li>
+                                                    <li class="sublist__item">Hausarzt- und Therapeutensuche</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Persönliche
+                                                Daten
+                                                ändern</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Ädressänderung</li>
+                                                    <li class="sublist__item">Versicherung anpassen</li>
+                                                    <li class="sublist__item">Namens-/Zivilstandsänderung
+                                                    </li>
+                                                    <li class="sublist__item">Änderung der Bank- und Postverbindung
+                                                    </li>
+                                                    <li class="sublist__item">Erweiterung Kontaktdaten</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Gut
+                                                zu wissen</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Kündigungsfristen</li>
+                                                    <li class="sublist__item">Medikamente</li>
+                                                    <li class="sublist__item">Gesundheitskostenauszug für Steuern</li>
+                                                    <li class="sublist__item">Versicherungskarten
+                                                    </li>
+                                                    <li class="sublist__item">Sanagate empfehlen</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Downloads</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Formulare</li>
+                                                    <li class="sublist__item">Reglemente</li>
+                                                    <li class="sublist__item">Broschüren</li>
+                                                </ul>
+                                            </div>
+                                        </ul>
+                                        <ul class="sub-nav-inner__list">
+                                            <li class="sub-nav-inner__list-item list-item__calculator">Prämienrechner</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </transition>
+
+                            <transition name="fadeInRight">
+                                <div v-show="subNavElements.ueberuns">
+                                    <div class="sub-nav-mobile__wrapper">
+                                        <ul class="sub-nav-inner__list">
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Portrait</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Wir stellen uns vor</li>
+                                                    <li class="sublist__item">Unser Versprechen</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Jobs</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Sanagate als Arbeitgeberin
+                                                    </li>
+                                                    <li class="sublist__item">Offene Stellen</li>
+                                                </ul>
+                                            </div>
+                                            <li @click="toggleSublist($event)" class="sub-nav-inner__list-item list-item__plus">Sana
+                                                Social</li>
+                                            <div class="sublist-mobile display-none">
+                                                <ul>
+                                                    <li class="sublist__item">Unsere Kanäle</li>
+                                                </ul>
+                                            </div>
+                                        </ul>
+                                        <ul class="sub-nav-inner__list">
+                                            <li class="sub-nav-inner__list-item list-item__calculator">Prämienrechner</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </transition>
+                        </div>
+                </transition>
+            </header>
+
+
         </div>
+        <div class="main-wrapper-outer center-item">
+            <div class="main-grid">
+                <!--the subnavigation menu -->
+                <div data-nav-sub="1" class="main-header__sub-nav shadow hide bottom ">
+                    <div class="main-header__sub-nav-inner center-item">
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Grundversicherung</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Übersicht</li>
+                                <li class="sub-nav-inner__list-item">Standardmodel</li>
+                                <li class="sub-nav-inner__list-item">Hausarztmodel</li>
+                                <li class="sub-nav-inner__list-item sub-nav-inner__list-item--active">SanaCall</li>
+                                <li class="sub-nav-inner__list-item list-item--empty">&nbsp;</li>
+                                <li class="sub-nav-inner__list-item list-item--empty">&nbsp;</li>
+                                <li class="sub-nav-inner__list-item list-item__calculator">Prämienrechner</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Zusatzversicherung</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Übersicht</li>
+                                <li class="sub-nav-inner__list-item">Ambulantversicherung</li>
+                                <li class="sub-nav-inner__list-item">Spitalversicherung</li>
+                                <li class="sub-nav-inner__list-item">Alternativversicherung</li>
+                                <li class="sub-nav-inner__list-item">Zahnpflegeversicherung</li>
+                                <li class="sub-nav-inner__list-item">Tod oder Invalidität durch Unfall</li>
+                                <li class="sub-nav-inner__list-item">Tod oder Invalidität durch Krankheit </li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Wechsel zu Sanagate</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">
+                                    Kündigungsfristen & Anleitung zum Wechsel
+                                </li>
+                                <li class="sub-nav-inner__list-item">Neu in der Schweiz</li>
+                                <li class="sub-nav-inner__list-item">Vorgeburtliche Anmeldung</li>
+                                <li class="sub-nav-inner__list-item">SanaCall</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Optimieren und Sparen</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Grundversicherung</li>
+                                <li class="sub-nav-inner__list-item">Zusatzversicherung</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div data-nav-sub="2" class="main-header__sub-nav shadow bottom hide">
+                    <div class="main-header__sub-nav-inner center-item">
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">SanaTools</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">mySanagate</li>
+                                <li class="sub-nav-inner__list-item">SanaHealth</li>
+                                <li class="sub-nav-inner__list-item">PocketDoc</li>
+                                <li class="sub-nav-inner__list-item">Panda</li>
+                                <li class="sub-nav-inner__list-item">MedGate App</li>
+                                <li class="sub-nav-inner__list-item">Hausarzt- und Therapeutensuche</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Persönliche Daten ändern</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Adressänderung</li>
+                                <li class="sub-nav-inner__list-item">Versicherung anpassen</li>
+                                <li class="sub-nav-inner__list-item">Namens-/Zivilstandsänderung</li>
+                                <li class="sub-nav-inner__list-item">Änderung der Bank und Postverbindung</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Gut zu wissen</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Kündigungsfristen</li>
+                                <li class="sub-nav-inner__list-item">Medikamente</li>
+                                <li class="sub-nav-inner__list-item">Gesundheitskostenauszug für Steuern</li>
+                                <li class="sub-nav-inner__list-item">Versicherungskarten</li>
+                                <li class="sub-nav-inner__list-item">Sanagate empfehlen</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Downloads</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Formulare</li>
+                                <li class="sub-nav-inner__list-item">Regelmente</li>
+                                <li class="sub-nav-inner__list-item">Broschüren</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div data-nav-sub="3" class="main-header__sub-nav shadow bottom hide">
+                    <div class="main-header__sub-nav-inner center-item">
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Portrait</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Wir stellen uns vor</li>
+                                <li class="sub-nav-inner__list-item">Unser versprechen</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">Jobs</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Sanagate als Arbeitgeberin</li>
+                                <li class="sub-nav-inner__list-item">Offene Stellen</li>
+                            </ul>
+                        </div>
+
+                        <div class="subnav-inner-item">
+                            <div class="sub-nav-inner__title">SanaSocial</div>
+                            <ul class="sub-nav-inner__list">
+                                <li class="sub-nav-inner__list-item">Unsere Kanäle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--/end subnavigation menu-->
+
+
+
+                <div class="content-text">
+                    <h1><span class="green">SanaCall</span> — das telemedizinische Modell  mit
+                        Prämienvergünstigungen
+                        von bis zu 12%</h1>
+                    <p class="content-text-paragraph">Beim SanaCall rufen Sie bei gesundheitlichen Problemen immer
+                        die
+                        Gratis-Hotline 0800 800 090 des
+                        unabhängigen Zentrums für Telemedizin an. Sind weitere Abklärungen oder Behandlungen
+                        erforderlich, werden Sie umgehend an einen Arzt oder ins Spital überwiesen.</p>
+                </div>
+
+                <img class="content-text__picture" src="assets/images/picture.jpg" />
+
+
+
+            </div>
+        </div>
+
+        <div class="section--grey">
+            <div class="section--grey-grid main-wrapper-outer center-item">
+
+                <div class="question-box">
+                    <h2 class="question-box__title">Ausnahmen bestätigen die Regel — wann dürfen Sie direkt zum
+                        Arzt?</h2>
+                    <ul class="question-box__list">
+                        <dropdown-content ref="dropdown" title="Bei Notfällen">In einer Notfallsituation können Sie
+                            einen Arzt
+                            oder
+                            ein Spital ohne vorgängige Kontaktaufnahme mit Medgate aufsuchen. Jedoch ist es hier
+                            wichtig, dass Sie innerhalb von fünf Arbeitstagen Medgate über den Notfall und die
+                            weiterführenden Behandlungen informieren. Dies ist notwendig, damit sich Sanagate an
+                            der
+                            Kostenübernahme beteiligen kann.</dropdown-content>
+                        <dropdown-content ref="dropdown" title="Zahnarzt, Gynäkologe und Augenarzt" last-item="true">Zahn-
+                            und
+                            Augenärzte sowie
+                            Gynäkologen können Sie direkt konsultieren, ein vorgängiger Anruf bei Medgate ist nicht
+                            nötig. Die Meldung für die Kontrollen beim Gynäkologen oder der Hebamme, während der
+                            Schwangerschaft, ist ebenfalls  nicht erforderlich.</dropdown-content>
+                    </ul>
+                </div>
+
+                <div class="call-box">
+                    <div class="call-box__text-wrapper">
+                        <h2 class="call-box__title">Vorteile SanaCall</h2>
+                        <p class="call-box__text">Jederzeit gut beraten
+                            Bei allen gesundheitlichen Fragen können Sie sich weltweit und rund um  die Uhr an das
+                            telemedizinische Zentrum von Medgate <b>+41 58 911 80 00</b> (Ortstarif) wenden.</p>
+                    </div>
+                </div>
+                <div class="price-calculator">
+                    <h3 class="price-calculator__title">Prämie berechnen</h3>
+                    <div class="price-calculator__input-wrapper">
+                        <input type="text" class="custom-input" placeholder="Geschlecht">
+                        <input type="text" class="custom-input" placeholder="Geburtsdatum">
+                        <input type="text" class="custom-input" placeholder="PLZ">
+                        <button class="button button-default">Weiter</button>
+                    </div>
+                </div>
+                <div class="download-links">
+                    <div class="download-links__item">
+                        <h3 class="download-links__title">Donwloads</h3>
+                        <ul class="download-links__list">
+                            <li class="download-links__list-item download-links__list-item--download ">
+                                <a href="#">Gesamtbroschüre
+                                    (PDF)</a></li>
+                            <li class="download-links__list-item download-links__list-item--download">
+                                <a href="#">Reglement
+                                    SanaCall (PDF)</a></li>
+                            <li class="download-links__list-item download-links__list-item--download">
+                                <a href="#">SanaCall:
+                                    Wichtiges in Kürze (PDF)</a></li>
+                        </ul>
+                    </div>
+                    <div class="download-links__item">
+                        <h3 class="download-links__title">Hilfreiche Links</h3>
+                        <ul class="download-links__list">
+                            <li class="download-links__list-item download-links__list-item--links">
+                                <a href="#"><span class="list-item-links__title">Optimieren und
+                                        Sparen</span>
+                                    Hilfreiche tipps und tricks um die Koste zu sparen.</a></li>
+                            <li class="download-links__list-item download-links__list-item--links">
+                                <a href="#">
+                                    <span class="list-item-links__title">Medgate-App</span>
+                                    Arzt konsultieren, Medikamente bestellen, Behandlungsplan anpassen und vieles
+                                    mehr.
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <div class="footer__inner main-wrapper-outer center-item">
+                <div class="footer__left-row">
+                    <div class="footer__sub-title">
+                        0800 347 354
+                    </div>
+                    <p class="footer__text">Hotline für allgemeine Fragen<br>
+                        Montag – Freitag / 08.00 – 12.00 Uhr</p>
+                </div>
+                <div class="footer__right-row">
+                    <div class="footer__sub-title">
+                        Bleiben Sie am Ball
+                    </div>
+                    <div class="footer__flex">
+                        <p class="footer__text">MIt unserem vierteljährlichen Newsletter oder auf den sozialen
+                            Kanälen.</p>
+                        <input type="text" class="newsletter-input" placeholder="Email für Newsletter">
+                        <div class="separator"></div>
+                        <div class="social">
+                            <img src="assets/images/social-blog.svg" />
+                            <img src="assets/images/social-facebook.svg" />
+                            <img src="assets/images/social-instagram.svg" />
+                            <img src="assets/images/social-twitter.svg" />
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright">
+                    © 2019, Sanagate AG, Luzern. Datenschutz. Rechtliche Hinweise. Impressum
+                </p>
+            </div>
+        </footer>
     </div>
 
 
 
 
 
-<!-- load vue for development-->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<!-- vue for production -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script> -->
+    <!-- load vue for development-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- vue for production -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script> -->
 
-<!--build:js js/main.min.js -->
-<script src="js/main.js"></script>
-<!-- endbuild -->
+    <!--build:js js/main.min.js -->
+    <script src="js/main.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
