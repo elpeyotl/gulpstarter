@@ -67,7 +67,6 @@ Grey section
   height: 100%;
   width: calc(100% - 4rem);
   margin: -150px auto;
-
   @include bp-medium {
     width: calc(100% - 10rem);
   }
@@ -83,13 +82,12 @@ Grey section
   grid-template-rows:
     150px 66px minmax(min-content, max-content) 140px
     minmax(434px, max-content) minmax(185px, max-content) 120px minmax(min-content, max-content);
-  @include bp-medium {
-    grid-template-columns: 20px 1fr repeat(9, 1fr) 20px;
-    grid-column-gap: 22px;
-  }
 
-  @include bp-xlarge() {
-    grid-template-columns: 20px 150px repeat(9, 1fr) 20px;
+  @include bp-medium {
+    grid-template-columns:
+      20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr)
+      20px;
+    grid-column-gap: 22px;
   }
 }
 
@@ -211,19 +209,22 @@ Grey section
 }
 
 .price-calculator {
-  height: 100%;
   grid-row: 6;
   grid-column: 2;
 
   padding: 2rem;
 
   @include bp-medium {
-    padding: 2rem;
+    padding: 4rem;
 
     grid-column: 4 / 10;
+    margin-top: -100px;
+  }
+
+  @include bp-large {
+    margin-top: -100px;
     margin-left: -44px;
     margin-right: -44px;
-    margin-top: -100px;
   }
 
   background-color: white;
@@ -417,7 +418,7 @@ Grey section
   color: white;
 
   &:hover {
-    background-color: $color-green;
+    background-color: $color-blue-dark;
   }
 }
 
@@ -551,23 +552,23 @@ footer {
 
   //grid for desktop
   @include bp-medium {
-    //grid-template-areas:
-    // " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . "
-    // " . . . . . . . . . . . . "
-    // " . . . content-text content-text content-text content-text content-text . . . . "
-    // " . . . . . . . . . . . . ";
     grid-template-areas:
-      " . main-header main-header main-header main-header . "
-      " . . . . . . "
-      " . . . content-text . . "
-      " . . . . . . ";
+      " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . "
+      " . . . . . . . . . . . . "
+      " . . . content-text content-text content-text content-text content-text . . . . "
+      " . . . . . . . . . . . . ";
+    // grid-template-areas:
+    //   " . main-header main-header main-header main-header . "
+    //   " . . . . . . "
+    //   " . . . content-text . . "
+    //   " . . . . . . ";
     //the columns
-    grid-template-columns: 20px 1fr 1fr minmax(848px, 5fr) 3fr 20px;
-    grid-column-gap: 22px;
-  }
+    grid-template-columns:
+      20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr)
+      20px;
 
-  @include bp-xlarge() {
-    grid-template-columns: 20px 150px 1fr minmax(848px, 5fr) 3fr 20px;
+    // grid-template-columns: 20px 1fr 1fr minmax(848px, 5fr) 3fr 20px;
+    grid-column-gap: 22px;
   }
 }
 
@@ -1121,4 +1122,13 @@ a {
     top: 3px;
     right: 10px;
   }
+}
+
+.grid-marging-hack {
+  width: 100%;
+
+  @include bp-medium {
+    width: calc(100% - 10rem);
+  }
+  margin: 0 auto;
 }

@@ -173,6 +173,65 @@ We define transitions here. So we can reuse them
 .fadeInDown-leave-active {
   animation: fadeInDown 0.5s reverse; }
 
+@-webkit-keyframes bounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0); }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0); }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0); }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes bounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0); }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0); }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0); }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+.bounceInUp-enter-active {
+  -webkit-animation: bounceInUp 1s;
+          animation: bounceInUp 1s; }
+
+.bounceInUp-leave-active {
+  animation: bounceInUp reverse 1s; }
+
 /************
 SET THE VARIABLES YOU USE IN YOUR PROJECT
 Like colors, page width, breakpoints etc.
@@ -493,7 +552,7 @@ Place for css helper classes
       flex-basis: 8.33333%;
   max-width: 8.33333%; }
 
-@media (max-width: 80em) {
+@media (max-width: 1569px) {
   [class*="_lg-1"] > [class~="col"],
   [class*="_lg-1"] > [class*="col-"],
   [class*="_lg-1"] > [class*="col_"] {
@@ -996,7 +1055,7 @@ Place for css helper classes
 [class*="grid_"] > [data-push-right*="off-11"] {
   margin-right: 91.66667%; }
 
-@media (max-width: 80em) {
+@media (max-width: 1569px) {
   [class~="grid"] > [class*="_lg-1"],
   [class*="grid-"] > [class*="_lg-1"],
   [class*="grid_"] > [class*="_lg-1"] {
@@ -1727,7 +1786,7 @@ Place for css helper classes
 /************************
     HIDING COLS
 *************************/
-@media (max-width: 80em) {
+@media (max-width: 1569px) {
   [class*="lg-hidden"] {
     display: none; } }
 
@@ -1931,11 +1990,8 @@ Grey section
   grid-template-rows: 150px 66px minmax(min-content, max-content) 140px minmax(434px, max-content) minmax(185px, max-content) 120px minmax(min-content, max-content); }
   @media (min-width: 1110px) {
     .section--grey-grid {
-      grid-template-columns: 20px 1fr repeat(9, 1fr) 20px;
+      grid-template-columns: 20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr) 20px;
       grid-column-gap: 22px; } }
-  @media (min-width: 1569px) {
-    .section--grey-grid {
-      grid-template-columns: 20px 150px repeat(9, 1fr) 20px; } }
 
 .question-box {
   grid-column: 2;
@@ -2023,18 +2079,20 @@ Grey section
     max-width: inherit; }
 
 .price-calculator {
-  height: 100%;
   grid-row: 6;
   grid-column: 2;
   padding: 2rem;
   background-color: white; }
   @media (min-width: 1110px) {
     .price-calculator {
-      padding: 2rem;
+      padding: 4rem;
       grid-column: 4 / 10;
-      margin-left: -44px;
-      margin-right: -44px;
       margin-top: -100px; } }
+  @media (min-width: 1261px) {
+    .price-calculator {
+      margin-top: -100px;
+      margin-left: -44px;
+      margin-right: -44px; } }
 
 .price-calculator__title {
   font-size: 2rem;
@@ -2172,7 +2230,7 @@ Grey section
   border-radius: 20px;
   color: white; }
   .button-default:hover {
-    background-color: #95c11f; }
+    background-color: #0b2f4c; }
 
 footer {
   grid-area: footer;
@@ -2281,12 +2339,9 @@ footer {
   grid-template-columns: 20px 1fr 20px; }
   @media (min-width: 1110px) {
     .main-grid {
-      grid-template-areas: " . main-header main-header main-header main-header . " " . . . . . . " " . . . content-text . . " " . . . . . . ";
-      grid-template-columns: 20px 1fr 1fr minmax(848px, 5fr) 3fr 20px;
+      grid-template-areas: " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . " " . . . . . . . . . . . . " " . . . content-text content-text content-text content-text content-text . . . . " " . . . . . . . . . . . . ";
+      grid-template-columns: 20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr) 20px;
       grid-column-gap: 22px; } }
-  @media (min-width: 1569px) {
-    .main-grid {
-      grid-template-columns: 20px 150px 1fr minmax(848px, 5fr) 3fr 20px; } }
 
 .main-header__sub-nav {
   position: fixed;
@@ -2684,3 +2739,10 @@ a {
   position: relative;
   top: 3px;
   right: 10px; }
+
+.grid-marging-hack {
+  width: 100%;
+  margin: 0 auto; }
+  @media (min-width: 1110px) {
+    .grid-marging-hack {
+      width: calc(100% - 10rem); } }

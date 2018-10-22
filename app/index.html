@@ -58,7 +58,7 @@
                     <img v-show="!mobileMenuOpen" class="burger-menu__icon" @click="mobileMenuOpen = true" src="assets/images/icon-burger.svg" />
                     <img v-show="mobileMenuOpen" @click="mobileMenuOpen = false" class="burger-menu__icon--close" src="assets/images/icon-burger-close.svg" />
                 </div>
-                <transition name="fade">
+                <transition name="bounceInUp">
                     <div v-show="mobileMenuOpen" class="mobile-menu-wrapper">
 
                         <div class="subnav-inner-item subnav-inner-item--mobile center-item">
@@ -249,8 +249,8 @@
 
 
         </div>
-        <div class="main-wrapper-outer center-item">
-            <div class="main-grid">
+        <div class="grid-marging-hack">
+            <div class="main-grid main-wrapper-outer center-item">
                 <!--the subnavigation menu -->
                 <div data-nav-sub="1" class="main-header__sub-nav shadow hide bottom ">
                     <div class="main-header__sub-nav-inner center-item">
@@ -428,18 +428,19 @@
                 </div>
                 <div class="price-calculator">
                     <h3 class="price-calculator__title">Prämie berechnen</h3>
-                    <div class="price-calculator__input-wrapper">
-                        <div class="input-wrapper">
+                    <div class="price-calculator__input-wrapper grid">
+                        <div class="col-3_xs-12-col_md-6">
                             <input type="text" class="custom-input" placeholder="Geschlecht">
                         </div>
-                        <div class="input-wrapper">
+                        <div class="col-3_xs-12-col_md-6">
                             <input type="text" class="custom-input" placeholder="Geburtsdatum">
                         </div>
-                        <div class="input-wrapper">
+                        <div class="col-3_xs-12-col_md-6">
                             <input type="text" class="custom-input" placeholder="PLZ">
                         </div>
-                        <div class="input-wrapper">
-                            <button class="button button-default button__calculator">Weiter</button>
+                        <div class="col-2_xs-12-col_md-6">
+                            <button class=" button
+                            button-default button__calculator">Weiter</button>
                         </div>
                     </div>
                 </div>
