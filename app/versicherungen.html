@@ -21,15 +21,15 @@
             </transition>
 
             <header class="main-header main-wrapper-outer center-item">
-                <a href="index.html">
-                <img class="main-header__logo" src="assets/images/logo.svg" />
-                </a>
+                    <a href="/index.html">
+                        <img class="main-header__logo" src="assets/images/logo.svg" />
+                    </a>
                 <!--Desktop menu-->
                 <!-- hidden on mobile-->
                 <nav class="main-header__nav">
                     <ul>
                         <li data-nav='1' class="main-header__nav-item main-header__nav--active " @mouseleave="hideNav($event)"
-                            @mouseover="showSubNav($event)"><a href="versicherungen.html">Versicherungen</a></li>
+                            @mouseover="showSubNav($event)">Versicherungen</li>
                         <li data-nav='2' class="main-header__nav-item" @mouseleave="hideNav($event)" @mouseover="showSubNav($event)">Mehrwert</li>
                         <li data-nav="null" class="main-header__nav-item" @mouseleave="hideNav($event)" @mouseover="showSubNav($event)"><a
                                 href="https://www.sanagate.ch" target="_blank">Kontakt
@@ -251,8 +251,8 @@
 
 
         </div>
-        <div class="">
-            <div class="main-grid--home">
+        <div class="grid-marging-hack">
+            <div class="main-grid main-wrapper-outer center-item">
                 <!--the subnavigation menu -->
                 <div data-nav-sub="1" class="main-header__sub-nav shadow hide bottom ">
                     <div class="main-header__sub-nav-inner center-item">
@@ -378,49 +378,105 @@
 
 
 
-                <div class="home__image-slider">
-                    <div class="home__image-slider--inner main-wrapper-outer center-item">
-                            <h1 class="home__image-slider--heading">HL1 96px einfach versichert</h1>
-                        </div>
-
-                    </div>
-
+                <div class="content-text">
+                    <h1><span class="green">SanaCall</span> — das telemedizinische Modell  mit
+                        Prämienvergünstigungen
+                        von bis zu 12%</h1>
+                    <p class="content-text-paragraph">Beim SanaCall rufen Sie bei gesundheitlichen Problemen immer
+                        die
+                        Gratis-Hotline 0800 800 090 des
+                        unabhängigen Zentrums für Telemedizin an. Sind weitere Abklärungen oder Behandlungen
+                        erforderlich, werden Sie umgehend an einen Arzt oder ins Spital überwiesen.</p>
                 </div>
+
+                <img class="content-text__picture" src="assets/images/picture.jpg" />
+
+
+
             </div>
         </div>
-        <div class="main-wrapper-outer center-item">
-                <div class="price-calculator--home">
-                        <div class="price-calculator">
-                                <h3 class="price-calculator__title">Prämie berechnen</h3>
-                                <div class="price-calculator__input-wrapper grid">
-                                    <div class="col-3_xs-12-col_md-6">
-                                        <input type="text" class="custom-input" placeholder="Geschlecht">
-                                    </div>
-                                    <div class="col-3_xs-12-col_md-6">
-                                        <input type="text" class="custom-input" placeholder="Geburtsdatum">
-                                    </div>
-                                    <div class="col-3_xs-12-col_md-6">
-                                        <input type="text" class="custom-input" placeholder="PLZ">
-                                    </div>
-                                    <div class="col-2_xs-12-col_md-6">
-                                        <button class=" button
-                                        button-default button__calculator">Weiter</button>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-        </div>
-
-
-
 
         <div class="section--grey">
             <div class="section--grey-grid main-wrapper-outer center-item">
 
+                <div class="question-box">
+                    <h2 class="question-box__title">Ausnahmen bestätigen die Regel — wann dürfen Sie direkt zum
+                        Arzt?</h2>
+                    <ul class="question-box__list">
+                        <dropdown-content ref="dropdown" title="Bei Notfällen">In einer Notfallsituation können Sie
+                            einen Arzt
+                            oder
+                            ein Spital ohne vorgängige Kontaktaufnahme mit Medgate aufsuchen. Jedoch ist es hier
+                            wichtig, dass Sie innerhalb von fünf Arbeitstagen Medgate über den Notfall und die
+                            weiterführenden Behandlungen informieren. Dies ist notwendig, damit sich Sanagate an
+                            der
+                            Kostenübernahme beteiligen kann.</dropdown-content>
+                        <dropdown-content ref="dropdown" title="Zahnarzt, Gynäkologe und Augenarzt" last-item="true">Zahn-
+                            und
+                            Augenärzte sowie
+                            Gynäkologen können Sie direkt konsultieren, ein vorgängiger Anruf bei Medgate ist nicht
+                            nötig. Die Meldung für die Kontrollen beim Gynäkologen oder der Hebamme, während der
+                            Schwangerschaft, ist ebenfalls  nicht erforderlich.</dropdown-content>
+                    </ul>
+                </div>
 
-
-
-
+                <div class="call-box">
+                    <div class="call-box__text-wrapper">
+                        <h2 class="call-box__title">Vorteile SanaCall</h2>
+                        <p class="call-box__text">Jederzeit gut beraten
+                            Bei allen gesundheitlichen Fragen können Sie sich weltweit und rund um  die Uhr an das
+                            telemedizinische Zentrum von Medgate <b>+41 58 911 80 00</b> (Ortstarif) wenden.</p>
+                    </div>
+                </div>
+                <div class="price-calculator">
+                    <h3 class="price-calculator__title">Prämie berechnen</h3>
+                    <div class="price-calculator__input-wrapper grid">
+                        <div class="col-3_xs-12-col_md-6">
+                            <input type="text" class="custom-input" placeholder="Geschlecht">
+                        </div>
+                        <div class="col-3_xs-12-col_md-6">
+                            <input type="text" class="custom-input" placeholder="Geburtsdatum">
+                        </div>
+                        <div class="col-3_xs-12-col_md-6">
+                            <input type="text" class="custom-input" placeholder="PLZ">
+                        </div>
+                        <div class="col-2_xs-12-col_md-6">
+                            <button class=" button
+                            button-default button__calculator">Weiter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-links">
+                    <div class="download-links__item">
+                        <h3 class="download-links__title">Donwloads</h3>
+                        <ul class="download-links__list">
+                            <li class="download-links__list-item download-links__list-item--download ">
+                                <a href="#">Gesamtbroschüre
+                                    (PDF)</a></li>
+                            <li class="download-links__list-item download-links__list-item--download">
+                                <a href="#">Reglement
+                                    SanaCall (PDF)</a></li>
+                            <li class="download-links__list-item download-links__list-item--download">
+                                <a href="#">SanaCall:
+                                    Wichtiges in Kürze (PDF)</a></li>
+                        </ul>
+                    </div>
+                    <div class="download-links__item">
+                        <h3 class="download-links__title">Hilfreiche Links</h3>
+                        <ul class="download-links__list">
+                            <li class="download-links__list-item download-links__list-item--links">
+                                <a href="#"><span class="list-item-links__title">Optimieren und
+                                        Sparen</span>
+                                    Hilfreiche tipps und tricks um die Koste zu sparen.</a></li>
+                            <li class="download-links__list-item download-links__list-item--links">
+                                <a href="#">
+                                    <span class="list-item-links__title">Medgate-App</span>
+                                    Arzt konsultieren, Medikamente bestellen, Behandlungsplan anpassen und vieles
+                                    mehr.
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -300,7 +300,7 @@ CSS HELPERS
 Place for css helper classes
 *************/
 .center-item {
-  margin: 0 auto; }
+  margin: 0 auto !important; }
 
 .text-center {
   text-align: center; }
@@ -1921,7 +1921,8 @@ p {
 LAYOUT STUFF GOES HERE
 **************/
 body {
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  overflow-x: hidden; }
 
 html {
   width: 100vw;
@@ -1931,7 +1932,8 @@ html {
 .main-wrapper-outer {
   width: 100%;
   height: 100%;
-  max-width: 1800px; }
+  max-width: 1800px;
+  position: relative; }
 
 .main-wrapper {
   width: 100%;
@@ -1973,11 +1975,8 @@ Grey section
 .section--grey {
   background-color: #f4f4f2;
   height: 100%;
-  width: calc(100% - 4rem);
-  margin: -150px auto; }
-  @media (min-width: 1110px) {
-    .section--grey {
-      width: calc(100% - 10rem); } }
+  margin: -150px auto;
+  width: 100%; }
 
 .section--grey-grid {
   display: grid;
@@ -2093,6 +2092,14 @@ Grey section
       margin-top: -100px;
       margin-left: -44px;
       margin-right: -44px; } }
+  .price-calculator--home {
+    max-width: 1100px;
+    background-color: white;
+    margin-top: 100px;
+    position: absolute;
+    top: -90px;
+    z-index: 1000;
+    margin-left: 4.3%; }
 
 .price-calculator__title {
   font-size: 2rem;
@@ -2342,6 +2349,58 @@ footer {
       grid-template-areas: " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . " " . . . . . . . . . . . . " " . . . content-text content-text content-text content-text content-text . . . . " " . . . . . . . . . . . . ";
       grid-template-columns: 20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr) 20px;
       grid-column-gap: 22px; } }
+  .main-grid--home {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-areas: " main-header main-header main-header" "home__image-slider home__image-slider home__image-slider";
+    grid-template-rows: 96px 580px;
+    grid-template-columns: 20px 1fr 20px; }
+    @media (min-width: 1110px) {
+      .main-grid--home {
+        grid-template-rows: 96px auto;
+        grid-template-areas: " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . " " home__image-slider home__image-slider  home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider  ";
+        grid-template-columns: 20px 1fr 1fr repeat(5, minmax(150px, 1fr)) repeat(3, 1fr) 20px;
+        grid-column-gap: 22px; } }
+
+.home__image-slider {
+  grid-area: home__image-slider;
+  width: 100%;
+  height: 580px;
+  background: #00a5d3fc;
+  background: -webkit-gradient(linear, left top, right top, from(#00a5d3fc), to(#95c120cc));
+  background: linear-gradient(to right, #00a5d3fc, #95c120cc); }
+  @media (min-width: 1110px) {
+    .home__image-slider {
+      height: calc(100vh - 96px); } }
+  .home__image-slider--inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/images/home-slider-girl.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+    background-position-x: -100px; }
+  .home__image-slider--heading {
+    height: auto;
+    width: 100%;
+    max-width: 635px;
+    color: #ffffff;
+    font-family: Merriweather;
+    -webkit-hyphens: none;
+        -ms-hyphens: none;
+            hyphens: none;
+    position: absolute;
+    left: 4.16%;
+    top: 40%;
+    font-size: 7.6rem;
+    letter-spacing: 0.1rem;
+    line-height: 8rem; }
+    @media (min-width: 768px) {
+      .home__image-slider--heading {
+        font-size: 9.6rem;
+        letter-spacing: 0.1rem;
+        line-height: 10rem; } }
 
 .main-header__sub-nav {
   position: fixed;
@@ -2486,9 +2545,11 @@ footer {
     @media (min-width: 1110px) {
       .main-header .burger-menu {
         display: none; } }
-  .main-header .burger-menu__icon:hover,
-  .main-header .burger-menu__icon--close:hover {
-    cursor: pointer; }
+  .main-header .burger-menu__icon, .main-header--close {
+    position: absolute;
+    right: 0; }
+    .main-header .burger-menu__icon:hover, .main-header--close:hover {
+      cursor: pointer; }
   .main-header .lang-switcher__icon--mobile {
     position: absolute;
     right: 60px; }
@@ -2606,13 +2667,13 @@ footer {
         right: 0; }
     .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item {
       padding: 20px 20px 20px 0; }
-      .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item:not(.list-item__calculator):not(.list-item__plus):not(.list-item__close) {
+      .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item {
         position: relative; }
-        .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item:not(.list-item__calculator):not(.list-item__plus):not(.list-item__close):after {
+        .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item :after {
           content: url("../../assets/images/icon-right-piramid.svg");
           position: absolute;
           right: 0; }
-        .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item:not(.list-item__calculator):not(.list-item__plus):not(.list-item__close):hover {
+        .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item :hover {
           border-bottom: 2px solid #00a5d3; }
       .subnav-inner-item--mobile .sub-nav-inner__list .sub-nav-inner__list-item.list-item__calculator:hover {
         border-bottom: 1px solid #00a5d3; }

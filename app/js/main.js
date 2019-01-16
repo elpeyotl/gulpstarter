@@ -107,9 +107,9 @@ var app = new Vue({
       }
 
       //add active class to element
-      el.originalTarget.classList.add("main-header__nav--hover-active");
+      el.target.classList.add("main-header__nav--hover-active");
 
-      const navId = el.originalTarget.dataset.nav;
+      const navId = el.target.dataset.nav;
       const subNavs = document.querySelectorAll(".main-header__sub-nav");
       var subNav = null;
 
@@ -130,7 +130,7 @@ var app = new Vue({
     hideNav: function(el) {
       this.showMenu = false;
       //add active class to element
-      el.originalTarget.classList.remove("main-header__nav--hover-active");
+      el.target.classList.remove("main-header__nav--hover-active");
 
       const subNavs = document.querySelectorAll(".main-header__sub-nav");
       for (let index = 0; index < subNavs.length; index++) {
@@ -168,9 +168,8 @@ var app = new Vue({
   },
   mounted: function() {
     const self = this;
-    document.addEventListener("scroll", function(event) {
-      console.log(event.pageY);
-      event.pageY > 116 ? (self.scrolled = true) : (self.scrolled = false);
+    window.addEventListener("scroll", function() {
+      window.scrollY > 116 ? (self.scrolled = true) : (self.scrolled = false);
     });
   }
 });
