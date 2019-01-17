@@ -80,6 +80,11 @@ Mixins
     @content;
   }
 }
+@mixin bp-custom($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
 
 //targets IE11
 @mixin IE11 {

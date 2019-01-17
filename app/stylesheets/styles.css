@@ -2131,6 +2131,12 @@ Grey section
         left: 4.3%;
         -webkit-transform: translateX(4.3%);
                 transform: translateX(4.3%); } }
+    @media (min-width: 1261px) {
+      .price-calculator--home {
+        left: 5%; } }
+    @media (min-width: 1800px) {
+      .price-calculator--home {
+        left: 3%; } }
 
 .price-calculator__title {
   font-size: 2rem;
@@ -2406,6 +2412,9 @@ footer {
   @media (min-width: 768px) {
     .home__image-slider {
       width: calc(100% - 10rem); } }
+  @media (min-width: 1261px) {
+    .home__image-slider {
+      height: calc(100vh - 250px); } }
   .home__image-slider--inner {
     position: relative;
     width: 100%;
@@ -2449,6 +2458,7 @@ footer {
         line-height: 9rem; } }
     @media (min-width: 1110px) {
       .home__image-slider--heading {
+        left: 4.7%;
         font-size: 9.6rem;
         letter-spacing: 0.1rem;
         line-height: 10rem;

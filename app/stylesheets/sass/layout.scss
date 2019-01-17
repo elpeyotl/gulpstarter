@@ -264,6 +264,12 @@ Grey section
       left: 4.3%;
       transform: translateX(4.3%);
     }
+    @include bp-large {
+      left: 5%;
+    }
+    @include bp-custom(1800px) {
+      left: 3%;
+    }
   }
 }
 
@@ -657,6 +663,10 @@ footer {
   // height: 580px;
   height: calc(100vh - 150px);
 
+  @include bp-large {
+    height: calc(100vh - 250px);
+  }
+
   background: #00a5d3fc;
   background: -webkit-linear-gradient(left, #00a5d3fc, #95c120cc);
   background: -moz-linear-gradient(left, #00a5d3fc, #95c120cc);
@@ -710,6 +720,7 @@ footer {
       line-height: 9rem;
     }
     @include bp-medium {
+      left: 4.7%;
       font-size: 9.6rem;
       letter-spacing: 0.1rem;
       line-height: 10rem;
