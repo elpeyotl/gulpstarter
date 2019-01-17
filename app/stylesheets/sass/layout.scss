@@ -68,7 +68,10 @@ Grey section
   background-color: $color-light-grey;
   height: 100%;
   margin: -150px auto;
-  width: 100%;
+  width: calc(100% - 3rem);
+  @include bp-small {
+    width: calc(100% - 9rem);
+  }
 }
 
 .section--grey-grid {
@@ -191,6 +194,15 @@ Grey section
   width: 169px !important;
 }
 
+.button__calculator--home {
+  display: flex;
+  justify-content: center;
+
+  @include bp-small {
+    justify-content: left;
+  }
+}
+
 .input-wrapper {
   padding: 5px;
   width: 100%;
@@ -229,13 +241,27 @@ Grey section
   background-color: white;
 
   &--home {
-    max-width: 1100px;
+    width: 80%;
+    max-width: 972px;
     background-color: white;
-    margin-top: 100px;
     position: absolute;
-    top: -90px;
+    top: -290px;
+
+    @include bp-small {
+      top: -190px;
+    }
+
     z-index: 1000;
-    margin-left: 4.3%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include bp-medium {
+      top: -9px;
+      width: 100%;
+      left: 4.3%;
+      transform: translateX(4.3%);
+    }
   }
 }
 
@@ -397,6 +423,7 @@ Grey section
   padding: 0;
   width: auto;
   overflow: visible;
+  display: block;
 
   background: transparent;
 
@@ -588,14 +615,12 @@ footer {
       "home__image-slider home__image-slider home__image-slider";
 
     //the rows
-    grid-template-rows: 96px 580px;
+    grid-template-rows: 96px auto;
 
     //the columns
     grid-template-columns: 20px 1fr 20px;
     //grid for desktop
     @include bp-medium {
-      grid-template-rows: 96px auto;
-
       grid-template-areas:
         " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . "
         " home__image-slider home__image-slider  home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider  ";
@@ -617,49 +642,75 @@ footer {
 
 .home__image-slider {
   grid-area: home__image-slider;
-  width: 100%;
-  height: 580px;
+
+  width: calc(100% - 4rem);
+  @include bp-small {
+    width: calc(100% - 10rem);
+  }
+
+  // height: 580px;
+  height: calc(100vh - 150px);
 
   background: #00a5d3fc;
   background: -webkit-linear-gradient(left, #00a5d3fc, #95c120cc);
   background: -moz-linear-gradient(left, #00a5d3fc, #95c120cc);
   background: linear-gradient(to right, #00a5d3fc, #95c120cc);
-  @include bp-medium {
-    height: calc(100vh - 96px);
-  }
 
   &--inner {
     position: relative;
-
     width: 100%;
     height: 100%;
     background-image: url("../assets/images/home-slider-girl.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: bottom;
-    background-position-x: -100px;
+    background-position-x: -400px;
+
+    @include bp-small {
+      background-position-x: -300px;
+    }
+    @include bp-medium {
+      background-position-x: -100px;
+    }
   }
 
   &--heading {
     height: auto;
     width: 100%;
-    max-width: 635px;
     color: #ffffff;
     font-family: Merriweather;
 
     hyphens: none;
 
     position: absolute;
-    left: 4.16%;
-    top: 40%;
+    left: 9%;
 
-    font-size: 7.6rem;
-    letter-spacing: 0.1rem;
-    line-height: 8rem;
+    max-width: 290px;
+
+    bottom: 50%;
+
+    font-size: 3.6rem;
+    letter-spacing: 0.62px;
+    line-height: 4.4rem;
     @include bp-small {
+      max-width: 635px;
+      left: 4.16%;
+      bottom: inherit;
+
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem;
+      letter-spacing: 0.85px;
+      line-height: 9rem;
+    }
+    @include bp-medium {
       font-size: 9.6rem;
       letter-spacing: 0.1rem;
       line-height: 10rem;
+      bottom: 196px;
+
+      top: inherit;
+      transform: translateY(0);
     }
   }
 }
@@ -708,9 +759,11 @@ footer {
   .main-header__logo {
     grid-area: logo;
     min-width: 114px;
+    margin-left: 20px;
 
     @include bp-small {
       width: 150px;
+      margin-left: 0;
     }
   }
 
