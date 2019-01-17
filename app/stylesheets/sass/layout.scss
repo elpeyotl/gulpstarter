@@ -13,6 +13,10 @@ html {
   height: 100%;
 }
 
+#app {
+  width: 100%;
+}
+
 .main-wrapper-outer {
   width: 100%;
   height: 100%;
@@ -68,7 +72,7 @@ Grey section
   background-color: $color-light-grey;
   height: 100%;
   margin: -150px auto;
-  width: calc(100% - 3rem);
+  width: calc(100% - 38px);
   @include bp-small {
     width: calc(100% - 9rem);
   }
@@ -245,14 +249,12 @@ Grey section
     max-width: 972px;
     background-color: white;
     position: absolute;
+    z-index: 0;
     top: -290px;
 
     @include bp-small {
       top: -190px;
     }
-
-    z-index: 1000;
-
     left: 50%;
     transform: translateX(-50%);
 
@@ -615,7 +617,11 @@ footer {
       "home__image-slider home__image-slider home__image-slider";
 
     //the rows
-    grid-template-rows: 96px auto;
+    grid-template-rows: 60px auto;
+
+    @include bp-medium {
+      grid-template-rows: 97px auto;
+    }
 
     //the columns
     grid-template-columns: 20px 1fr 20px;
@@ -643,7 +649,7 @@ footer {
 .home__image-slider {
   grid-area: home__image-slider;
 
-  width: calc(100% - 4rem);
+  width: calc(100% - 48px);
   @include bp-small {
     width: calc(100% - 10rem);
   }
@@ -745,17 +751,24 @@ footer {
   @extend .trans;
 
   background-color: white;
-  height: 99px;
   width: 100%;
   position: fixed;
   z-index: 1000;
-  height: 99px;
+
+  @include bp-medium {
+    height: 99px;
+  }
 }
 
 .main-header {
   max-width: $max-page-outer-width;
   left: 50%;
   transform: translateX(-50%);
+
+  @include bp-small {
+    padding: 0 24px;
+  }
+
   .main-header__logo {
     grid-area: logo;
     min-width: 114px;
@@ -763,7 +776,6 @@ footer {
 
     @include bp-small {
       width: 150px;
-      margin-left: 0;
     }
   }
 
@@ -886,6 +898,7 @@ footer {
       display: none;
       @include bp-medium {
         display: grid;
+        margin-right: 20px;
       }
     }
   }
@@ -951,9 +964,10 @@ footer {
     height: 100vh;
     width: 100vw;
     background-color: #ffffff;
-    top: 94px;
+    top: 57px;
     position: fixed;
     z-index: 1000;
+    padding-top: 40px;
   }
 
   //the css grid specs
@@ -971,7 +985,7 @@ footer {
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
 
-    padding: 0 40px;
+    // padding: 0 40px;
   }
   @include bp-large {
     grid-template-areas: "logo .  nav nav nav nav nav nav lang-switcher login-button";

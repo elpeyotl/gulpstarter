@@ -1929,6 +1929,9 @@ html {
   min-height: 100vh;
   height: 100%; }
 
+#app {
+  width: 100%; }
+
 .main-wrapper-outer {
   width: 100%;
   height: 100%;
@@ -1976,7 +1979,7 @@ Grey section
   background-color: #f4f4f2;
   height: 100%;
   margin: -150px auto;
-  width: calc(100% - 3rem); }
+  width: calc(100% - 38px); }
   @media (min-width: 768px) {
     .section--grey {
       width: calc(100% - 9rem); } }
@@ -2113,8 +2116,8 @@ Grey section
     max-width: 972px;
     background-color: white;
     position: absolute;
+    z-index: 0;
     top: -290px;
-    z-index: 1000;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
@@ -2382,8 +2385,11 @@ footer {
     display: grid;
     grid-auto-flow: column;
     grid-template-areas: " main-header main-header main-header" "home__image-slider home__image-slider home__image-slider";
-    grid-template-rows: 96px auto;
+    grid-template-rows: 60px auto;
     grid-template-columns: 20px 1fr 20px; }
+    @media (min-width: 1110px) {
+      .main-grid--home {
+        grid-template-rows: 97px auto; } }
     @media (min-width: 1110px) {
       .main-grid--home {
         grid-template-areas: " . main-header main-header main-header main-header main-header main-header main-header main-header main-header main-header . " " home__image-slider home__image-slider  home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider home__image-slider  ";
@@ -2392,7 +2398,7 @@ footer {
 
 .home__image-slider {
   grid-area: home__image-slider;
-  width: calc(100% - 4rem);
+  width: calc(100% - 48px);
   height: calc(100vh - 150px);
   background: #00a5d3fc;
   background: -webkit-gradient(linear, left top, right top, from(#00a5d3fc), to(#95c120cc));
@@ -2473,11 +2479,12 @@ footer {
 
 .main-header__outer {
   background-color: white;
-  height: 99px;
   width: 100%;
   position: fixed;
-  z-index: 1000;
-  height: 99px; }
+  z-index: 1000; }
+  @media (min-width: 1110px) {
+    .main-header__outer {
+      height: 99px; } }
 
 .main-header {
   max-width: 1800px;
@@ -2492,14 +2499,16 @@ footer {
   grid-template-areas: ". logo burger-menu . ";
   grid-template-columns: 20px 1fr 1fr 20px;
   grid-template-rows: 60px; }
+  @media (min-width: 768px) {
+    .main-header {
+      padding: 0 24px; } }
   .main-header .main-header__logo {
     grid-area: logo;
     min-width: 114px;
     margin-left: 20px; }
     @media (min-width: 768px) {
       .main-header .main-header__logo {
-        width: 150px;
-        margin-left: 0; } }
+        width: 150px; } }
   .main-header .main-header__nav {
     display: none;
     grid-area: nav;
@@ -2582,7 +2591,8 @@ footer {
       display: none; }
       @media (min-width: 1110px) {
         .main-header .login-button.login-button__desktop {
-          display: grid; } }
+          display: grid;
+          margin-right: 20px; } }
   .main-header .burger-menu {
     grid-area: burger-menu;
     display: -webkit-box;
@@ -2630,16 +2640,16 @@ footer {
     height: 100vh;
     width: 100vw;
     background-color: #ffffff;
-    top: 94px;
+    top: 57px;
     position: fixed;
-    z-index: 1000; }
+    z-index: 1000;
+    padding-top: 40px; }
   @media (min-width: 1110px) {
     .main-header {
       grid-column-gap: 22px;
       grid-template-areas: "logo nav  nav nav nav nav nav nav lang-switcher login-button";
       grid-template-columns: repeat(10, 1fr);
-      grid-template-rows: auto;
-      padding: 0 40px; } }
+      grid-template-rows: auto; } }
   @media (min-width: 1261px) {
     .main-header {
       grid-template-areas: "logo .  nav nav nav nav nav nav lang-switcher login-button"; } }
